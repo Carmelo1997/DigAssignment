@@ -1,6 +1,5 @@
-<h3 align = "right">学院：计算机学院&emsp;学号：3120191079&emsp;姓名：周泳宇</h3>
-
-<h1 align = "left">互评作业1: 数据探索性分析与数据预处理</h1>
+### 学院：计算机学院&emsp;学号：3120191079&emsp;姓名：周泳宇
+# 互评作业1: 数据探索性分析与数据预处理
 **所选数据集**
 - [Wine Reviews](https://www.kaggle.com/zynicide/wine-reviews "Wine Reviews")
 - [Consumer & Visitor Insights For Neighborhoods](https://www.kaggle.com/safegraph/visit-patterns-by-census-block-group "Consumer & Visitor Insights For Neighborhoods")
