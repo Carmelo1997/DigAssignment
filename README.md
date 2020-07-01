@@ -1,14 +1,18 @@
 ### 学院：计算机学院&emsp;学号：3120191079&emsp;姓名：周泳宇
-# 互评作业三：分类与预测
-**所选问题：Hotel booking demand, 酒店预订需求**
-- [Hotel booking demand](https://www.kaggle.com/jessemostipak/hotel-booking-demand "Hotel booking demand")
-
+# 互评作业4_离群点分析与异常检测
+**所选数据集**
+- abalone_benchmarks
+- wine_benchmarks
+以上两个数据集均来自于：[Anomaly Detection Meta-Analysis Benchmarks](https://ir.library.oregonstate.edu/concern/datasets/47429f155?locale=en "Anomaly Detection Meta-Analysis Benchmarks")
 ------------
 
-**目录文件介绍：目录【互评作业3_分类与预测】下为本次作业的相关文件**
-- **挖掘过程报告**：Hotel_Booking_Demand.html是挖掘过程的报告
+**目录文件介绍：目录【互评作业4_离群点分析与异常检测】下为本次作业的相关文件**
+- **挖掘过程报告**：
+	- abalone.html，wine.html分别为两个数据集的分析过程报告；
+	- abalone_result.csv，wine_result.csv分别为两个数据集的分析结果：包含了用六种离群点检测算法对数据进行离群点分析时，在roc和prn这两个指标上的结果。
 - **程序**：
-	- Hotel_Booking_Demand.ipynb，Hotel_Booking_Demand.py为整个挖掘过程的程序（包括：对数据集进行处理的代码，数据挖掘代码）；
+	- abalone.ipynb，abalone.py为第一个数据集的程序；
+	- wine.ipynb，wine.py为第二个数据集的程序；
 	- .ipynb后缀的是使用 Jupyter Notebook 来编写Python程序时的文件；
 	- .py后缀的是源代码文件。
 
@@ -20,7 +24,7 @@
 ```python
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+import pyod
 import sklearn
+import tqdm
 ```
