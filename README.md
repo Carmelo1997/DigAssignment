@@ -3,7 +3,7 @@
 **所选数据集**
 - abalone_benchmarks
 - wine_benchmarks
-以上两个数据集均来自于：[Anomaly Detection Meta-Analysis Benchmarks](https://ir.library.oregonstate.edu/concern/datasets/47429f155?locale=en "Anomaly Detection Meta-Analysis Benchmarks")
+- 注：以上两个数据集均来自于：[Anomaly Detection Meta-Analysis Benchmarks](https://ir.library.oregonstate.edu/concern/datasets/47429f155?locale=en "Anomaly Detection Meta-Analysis Benchmarks")
 ------------
 
 **目录文件介绍：目录【互评作业4_离群点分析与异常检测】下为本次作业的相关文件**
