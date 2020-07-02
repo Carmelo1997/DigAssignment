@@ -33,7 +33,7 @@ clfs.append(["ABOD", clf_ABOD])
 # ## 1.2 KNN 检测器
 # ### 对于任意数据点，其到第k个邻居的距离可以作为其离群得分，PyOD提供三种不同的KNN检测器：Largest： 使用第k个邻居的距离来作为离群得分；Mean: 使用全部k个邻居的平均距离作为离群得分；Median:使用k个邻居的距离的中位数作为离群得分。这里采用Largest检测器。
 
-# In[102]:
+# In[11]:
 
 
 from pyod.models.knn import KNN
@@ -91,19 +91,19 @@ clfs.append(["CBLOF", clf_CBLOF])
 
 # ## 2.1 首先展示对单个benchmark的处理
 
-# In[66]:
+# In[1]:
 
 
 import pandas as pd
 
 
-# In[67]:
+# In[2]:
 
 
 df = pd.read_csv('./abalone/benchmarks/abalone_benchmark_0001.csv')
 
 
-# In[68]:
+# In[3]:
 
 
 df.head()
@@ -111,7 +111,7 @@ df.head()
 
 # ### 将是否离群转换为数字标签
 
-# In[69]:
+# In[4]:
 
 
 label_mapping = {
@@ -120,7 +120,7 @@ label_mapping = {
 df['ground.truth'] = df['ground.truth'].map(label_mapping)
 
 
-# In[70]:
+# In[5]:
 
 
 df.head()
@@ -128,7 +128,7 @@ df.head()
 
 # ### 提取训练属性与标签
 
-# In[71]:
+# In[6]:
 
 
 col_n = ['V1','V2','V3', 'V4','V5','V6', 'V7', 'ground.truth']
@@ -136,7 +136,7 @@ col_n = ['V1','V2','V3', 'V4','V5','V6', 'V7', 'ground.truth']
 data = pd.DataFrame(df,columns = col_n)
 
 
-# In[72]:
+# In[7]:
 
 
 x = data.iloc[:, :-1]
@@ -145,7 +145,7 @@ y = data.iloc[:, -1:]
 
 # ### 划分训练集（80%）与测试集（20%）
 
-# In[73]:
+# In[8]:
 
 
 from sklearn.model_selection import train_test_split
@@ -154,7 +154,7 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_
 
 # ### 将数据转换成np.array()并用分类器进行检测
 
-# In[74]:
+# In[9]:
 
 
 import numpy as np
@@ -165,7 +165,7 @@ y_train = np.array(y_train)
 y_test = np.array(y_test)
 
 
-# In[75]:
+# In[12]:
 
 
 clf_name = 'KNN'
@@ -173,7 +173,7 @@ clf = KNN()
 clf.fit(x_train)
 
 
-# In[76]:
+# In[13]:
 
 
 y_train_pred = clf.labels_  # binary labels (0: inliers, 1: outliers)
@@ -182,6 +182,27 @@ y_train_scores = clf.decision_scores_  # raw outlier scores
 # get the prediction on the test data
 y_test_pred = clf.predict(x_test)  # outlier labels (0 or 1)
 y_test_scores = clf.decision_function(x_test)  # outlier scores
+
+
+# ### 可视化离群点检测效果
+
+# In[18]:
+
+
+from sklearn.manifold import TSNE
+# T-SNE Implementation
+X_train_reduced_tsne = TSNE(n_components=2, random_state=2020, init='pca', n_iter=2000).fit_transform(x_train)
+X_test_reduced_tsne = TSNE(n_components=2, random_state=2020, init='pca', n_iter=2000).fit_transform(x_test)
+
+
+# In[19]:
+
+
+import warnings
+warnings.filterwarnings("ignore")
+from pyod.utils.example import visualize
+visualize('KNN', X_train_reduced_tsne, y_train, X_test_reduced_tsne, y_test, y_train_pred,
+          y_test_pred, show_figure=True, save_figure=False)
 
 
 # ### 用roc和prn评价准确率
